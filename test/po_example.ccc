@@ -1,0 +1,82 @@
+#include <stdio.h>
+#include <portos.h>
+
+int b;
+
+#define uuu(a) (a+a)
+
+int f(int a)
+{
+  return uuu (2);
+}
+
+/* khkjh */ #define AAAA 5
+
+void one(po_priority(b))
+{
+  printf("%d\n", AAAA);
+  return;
+}
+
+#if HGJGJHG
+static void g(po_priority(5), int (*a)(float x), double zz)
+#elif jhhkjh
+void g(po_priority(7), int (*a)(float x), char *zz)
+#else
+void GG(po_priority(b), int (*u)(float x), double zz, short int xx)
+#endif
+{
+  printf("hello %d\n", (int)zz);
+}
+
+struct ts {  
+};
+
+void alpha(void *e)
+{
+  printf("%p", e);
+}
+
+#define mmm 7
+
+#define ohmygosh \
+  elvis
+
+void h(
+       po_priority((double)b), struct ts bj, struct ts q[mmm], struct
+       ts *(*rab[2][23])[34][34][44],
+       float *(*bar[2][23])(int d[4], double (*a)(int b)),
+       short (*(*ggg[mmm]))(int d),
+       int (*a)
+           (int b))
+{
+  // klsjs
+  alpha(ggg);
+  alpha(q);
+  alpha(&bj);
+  alpha(rab);
+  alpha(bar);
+}
+
+void pointer(po_priority(b), int b)
+{
+}
+
+int hh(double x)
+{
+  pointer(po_signal(10, 0, NULL), 1);
+  pointer(po_signal(10, 1), 1);
+  pointer(po_time(10, 0, NULL), 1);
+  pointer(po_time(10, 1), 1);
+  return 2;
+}
+
+typedef struct {
+  int x;
+  void (*callback)(po_priority(P), int a);
+} mystruct;
+
+int main()
+{
+  return 0;
+}

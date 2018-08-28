@@ -1,0 +1,59 @@
+#
+# Portos v1.7.0
+# Copyright (c) 2003-2014 by Rabih Chrabieh. All rights reserved.
+#
+
+DIR_TOOLS  := $(DIR_TOP)/tools
+DIR_INC    := $(DIR_TOP)/include
+
+ifndef TARGET
+	TARGET := sim
+endif
+ifndef VERSION
+	VERSION := debug
+endif
+
+DIR_LIB    := $(DIR_TOP)/lib/$(TARGET)/$(VERSION)
+DIR_OBJ    := obj/$(TARGET)/$(VERSION)
+
+PORTOS_LIB := $(DIR_LIB)/portos.a
+
+# Object files
+OBJS       := $(addprefix $(DIR_OBJ)/, $(CFILES:.c=.o))
+SRCS       := $(CFILES)
+
+# Compiler
+CFLAGS     := -I. -I./target_$(TARGET) -I$(DIR_TOP)/include -I$(DIR_TOP)/include/target_$(TARGET) -Wall
+
+# Linker
+LDFLAGS    :=
+
+ifeq ($(TARGET), sim)
+	CC      := gcc
+	CFLAGS  +=
+	LDFLAGS +=
+endif
+ifeq ($(TARGET), dspbios)
+endif
+ifeq ($(TARGET), arm)
+#	CC      := /opt/ecos/gnutools/arm-elf/arm-elf/bin/gcc
+#	CC      := /opt/ecos/gnutools/arm-eabi/bin/arm-eabi-gcc
+#	AR      := /opt/ecos/gnutools/arm-eabi/bin/arm-eabi-ar
+#	CFLAGS  += -I/cygdrive/c/proj/ecos_work/arm_pid_kernel_install/include
+# We use GNUARM under PROGRAM FILES. Accessible (oddly) as /cygdrive/c/gnuarm/bin/arm-elf-gcc or gdb (in gdb call "target sim" and "load" before run)
+	CC      := arm-elf-gcc
+	AR      := arm-elf-ar
+#	CFLAGS  += -mcpu=arm7tdmi -mthumb -DTARGET_SLOW
+#	LDFLAGS += -mcpu=arm7tdmi -mthumb -lc
+	CFLAGS  += -mcpu=arm7tdmi -DTARGET_SLOW
+	LDFLAGS += -mcpu=arm7tdmi -lc
+endif
+
+ifneq ($(VERSION), release)
+	CFLAGS += -g -DDEBUG=2
+else
+	CFLAGS += -O3
+endif
+ifeq ($(VERSION), test)
+	CFLAGS += -Dpo_TEST
+endif
